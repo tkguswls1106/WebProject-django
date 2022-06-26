@@ -1,0 +1,34 @@
+{% extends  'webapp1/header_footer_base.html' %}
+{% load static %}  <!-- 템플릿의 최상단에 우리가 static을 사용할 것이라고 먼저 선언해주어야한다. -->
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'webapp1/Forum_style.css' %}"/>
+
+    <div id="forum">
+       <div id="inform_share_title">정보 공유 게시판</div>
+
+        <div id="inform_share_comment_title">
+            <ul>
+                 <list id="inform_share_comment_title_list0">번호</list>
+                 <list id="inform_share_comment_title_list1">제목</list>
+                 <list id="inform_share_comment_title_list2">작성자</list>
+                 <list id="inform_share_comment_title_list3">작성일</list>
+                 <list id="inform_share_comment_title_list4">파일</list>
+            </ul>
+            <div id="comment_list">
+
+            </div>
+            <div id="inform_share_comment_write_div">
+                <ul>
+                     <list><input id="free_title" type="text" value="제목" ></list>
+                     <list><input id="free_name" type="text" value="이름" ></list>
+                     <list><textarea id="free_text"  rows="8" cols="220" >내용을 입력해 주십시오</textarea></list>
+                     <list><input  type="button" id="free_click_button" value="글쓰기" onclick=" SaveItem()"></list>
+                     <list><input  type="button" id="free_delete_button" value="전체삭제" onclick="ClearAll()"></list>
+                 </ul>
+            </div>
+         </div>
+    </div>
+
+<script type="text/javascript" src="{% static 'webapp1/Forum_write.js' %}"></script>
+{% endblock %}

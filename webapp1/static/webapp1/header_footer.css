@@ -1,0 +1,38 @@
+#Header{margin: 5px auto;}
+#Header_1st_line{max-width: 1700px;min-width: 1600px; height: 80px; margin: 0 auto;}
+#Header_2st_line{max-width: 1700px;min-width: 1600px; height: 80px; margin: 0 auto;background-image:url('헤더 파란그림.jpg');}
+#Header_smlogo_div {margin: auto;display:inline-block; height: 80px;width: 300px;}
+#Header_smlogo{width: 100%;height: 100%;object-fit: cover}
+#Header_menu_div {margin: auto;position: relative;display:inline-block; width: 1130px;height: 80px;}
+#Header_menu{font-size: 45px;list-style: none;padding: 0;font-weight: 400;float: left;margin: 10px;}
+#Header_menu>a{border: solid;border-color: transparent;border-width: 5px;}
+#Header_menu>a:link{text-decoration: none;color: black;}
+#Header_menu>:visited{text-decoration: none;color: black;}
+#Header_menu>a:hover{text-decoration: none;color: black;border: solid;border-width: 5px;}
+#Header_menu>a>li{position: relative;display: inline-block;padding-left: 10px;padding-right: 10px;}
+#Header_smSwlogo_div {margin: auto;position: flex;display: inline-block;height: 80px;width: 250px;float:right}
+#Header_smSwlogo {position: relative;display: flex;width: 100%;height: 80%;top: 14px;}
+#Header_smSwlogo>a>img{width: 100%;height: 100%;}
+
+
+#foot_back{height: 180px;max-width: 1660px;min-width: 1600px;margin: 0 auto;background-color: #3c3c3c;padding: 20px;}
+#footer_menu{list-style: none;padding: 0;font-weight: 400;margin-top: 30px;margin: 0;}
+#footer_menu>li{position: relative;display: inline-block;padding-left: 60px;font-size: 20px;padding-left: 0;padding-right: 20px;}
+#site_button{width: 283.99px;font-size: 20px; background-color: #302f2f;border-radius: 10px;color: aliceblue;}
+#check-btn { display: none;}
+#check-btn:checked ~ .site_list{display:block;}
+#site_list{display: none;list-style: none;padding: 12px 22px;margin: 0;font-size: 20px;background-color:rgb(230, 210, 143);border-radius: 10px;}
+#site_inform>div{font-size: 23px;margin-top: 20px;color:#8b8888b5}
+#a_site1:link{text-decoration: none;color: rgb(245, 192, 93);}
+#a_site1:visited{text-decoration: none;color: rgb(245, 192, 93)}
+#a_site1:hover{text-decoration: none;color: rgb(246, 211, 147);}
+#a_site2:link{text-decoration: none;color: rgb(130, 126, 120);}
+#a_site2:visited{text-decoration: none;color: rgb(130, 126, 120);}
+#a_site2:hover{text-decoration: none;color: rgb(180, 177, 174);}
+#smu_web:link{text-decoration: none;color: rgb(130, 126, 120);}
+#smu_web:visited{text-decoration: none;color: rgb(130, 126, 120);}
+#smu_web:hover{text-decoration: none;color: rgb(111, 109, 107);}
+#swu_web:link{text-decoration: none;color: rgb(130, 126, 120);}
+#swu_web:visited{text-decoration: none;color: rgb(130, 126, 120);}
+#swu_web:hover{text-decoration: none;color: rgb(111, 109, 107);}
+

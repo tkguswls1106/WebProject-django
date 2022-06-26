@@ -1,0 +1,102 @@
+{% extends  'webapp1/header_footer_base.html' %}
+{% load static %}  <!-- 템플릿의 최상단에 우리가 static을 사용할 것이라고 먼저 선언해주어야한다. -->
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'webapp1/home_style.css' %}"/>
+    <script type="text/javascript" src="{% static 'webapp1/home_slide.js' %}"></script>
+
+        <div id="hel">
+            <input type="radio" name="slide" id="slide01" value="sl1" checked>
+            <input type="radio" name="slide" id="slide02" value="sl2">
+            <input type="radio" name="slide" id="slide03" value="sl3">
+            <input type="radio" name="slide" id="slide04" value="sl4">
+            <input type="radio" name="slide" id="slide05" value="sl5">
+            <ul class="logo_list">
+                <li class="sl"><img width="100%" height="100%" src="{% static 'webapp1/01.png' %}"></li>
+                <li class="sl"><img width="100%" height="100%" src="{% static 'webapp1/02.png' %}"></li>
+                <li class="sl"><img width="100%" height="100%" src="{% static 'webapp1/03.png' %}"></li>
+                <li class="sl"><img width="100%" height="100%" src="{% static 'webapp1/04.png' %}"></li>
+                <li class="sl"><img width="100%" height="100%" src="{% static 'webapp1/05.png' %}"></li>
+            </ul>
+        </div>
+
+    <div id="main_div">
+        <div>
+            <div style="text-align: center;font-size: 40px;">
+                공지사항
+            </div>
+            <div class="notice_div_set"  >
+                <div class="notice_div_left_div">
+                    <div class="main_div_notice_title_font">
+                        추가 데이터 셋
+                    </div>
+                <div style="border-top: solid;margin-top: 5px;">
+                    <ul class="notice_list">
+                        <li>Data Name : faust - Data Category : 3-D Image </li>
+                        <li>Data Name : Space - Data Category : 3-D Image </li>
+                        <li>Data Name : VoxCeleb - Data Category : 3-D Image </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="notice_div_right_div">
+                <div class="main_div_notice_title_font">
+                   경진대회
+                </div>
+                <div style="border-top: solid;margin-top: 5px;">
+                    <ul class="notice_list">
+                        <li>도로위 인식의 최강자 선발대회 2022.06.01~2022.07.01 Kitti</li>
+                        <li>Did you understand what I said? 2022.08.01~2022.09.01 wmt19</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div>
+            <div style="text-align: center;font-size: 40px;">
+                인기 많은 글
+            </div>
+            <div class="notice_div_set"  >
+                <div class="notice_div_left_div">
+                    <div class="main_div_notice_title_font">
+                        Data Wiki
+                    </div>
+                <div style="border-top: solid;margin-top: 5px;">
+                    <ul class="notice_list">
+                        <li>Data Name : Youtube-8M Segments Dataset : Video </li>
+                        <li>Data Name : kitti Category : Image </li>
+                        <li>Data Name : imagenet Data Category : Image </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="notice_div_right_div">
+                <div class="main_div_notice_title_font">
+                    Colosseum
+                </div>
+                <div style="border-top: solid;margin-top: 5px;">
+                    <ul class="notice_list">
+                        <li>천하제일 얼굴 인식대회 2022.04.01~2022.05.01 celebA</li>
+                        <li>도로위 인식의 최강자 선발 대회 2022.06.01~2022.07.01 wmt19</li>
+                        <li>Did you understand what I said? 2022.08.01~2022.09.01 wmt19</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div class="notice_div_set"  >
+            <div >
+                <div class="main_div_notice_title_font">
+                    Forum
+                </div>
+            <div style="border-top: solid;margin-top: 5px;font-size: 20px">
+                <ul class="notice_list">
+                    <li>[공지사항] Datawiki가 새롭게 단장된니다. 더욱 개선된 사이트를 기대해 주세요 2022.05.08 /100</li>
+                    <li>튜토리얼 공지 tensorflow와 keras의 라이브러리를 이용하여 같이 공부해 봅시다 2022.05.19 /84 </li>
+                    <li>공모전 종료 안내 2022년 데이터 위키 공모전이 성공리에 마감 되었습니다 2022.05.14 /50</li>
+                </ul>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

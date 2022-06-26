@@ -1,0 +1,384 @@
+{% extends  'webapp1/header_footer_base.html' %}
+{% load static %}  <!-- 템플릿의 최상단에 우리가 static을 사용할 것이라고 먼저 선언해주어야한다. -->
+
+{% block content %}
+    <style type="text/css">
+        section {width: 1487px;height: 590px; padding: 1px solid; float:right;}
+
+        article {width: 1488px; border: 1px solid;}
+
+        aside {width: 200px; height: 782px; float: left; border: 1px solid; text-align: center; padding-top: 1%; position:absolute;}
+
+        #wrap {width: 1690px; height: 800px; border: 2px solid; margin: auto; position:relative;}
+
+        #wiki_article_top { height: 200px; }
+
+        #wiki_article_bottom {height: 597px;}
+
+        #info_link { text-decoration-line: none; color: black; }
+        #info_tutorial { text-decoration-line: none; color: black; }
+    </style>
+    <script type="text/javascript">
+        var all_arr = [];
+        {% for data in data_list %}
+            var ob = {id: "{{ data.id }}", name: "{{ data.name }}", description: "{{ data.description }}", link: "{{ data.link }}", category:"{{ data.category }}", field:"{{ data.field }}", task:"{{ data.task }}", instances:"{{ data.instances }}", num:"{{ data.num }}", tutorial:"{{ data.tutorial }}"};
+            all_arr.push(ob);
+        {% endfor %}
+
+        // 여기는 정렬 전 초기상태의 js 코드
+        function information(n) {
+            let str1 = '';
+            if (all_arr[n].name == '-')
+            {
+                all_arr[n].name = "정보가 없는 항목 입니다.";
+                str1 += all_arr[n].name;
+            }
+            else
+            {
+                str1 += all_arr[n].name;
+            }
+            var str_name = document.getElementById("info_name");
+            str_name.innerHTML = str1;
+
+            let str2 = '';
+            if (all_arr[n].field == '-')
+            {
+                all_arr[n].field = "정보가 없는 항목 입니다.";
+                str2 += all_arr[n].field;
+            }
+            else
+            {
+                str2 += all_arr[n].field;
+            }
+            var str_field = document.getElementById("info_field");
+            str_field.innerHTML = str2;
+
+            let str3 = '';
+            if (all_arr[n].instances == '-')
+            {
+                all_arr[n].instances = "정보가 없는 항목 입니다.";
+                str3 += all_arr[n].instances;
+            }
+            else
+            {
+                str3 += all_arr[n].instances;
+            }
+            var str_instances = document.getElementById("info_instances");
+            str_instances.innerHTML = str3;
+
+            let str4 = '';
+            if (all_arr[n].task == '-')
+            {
+                all_arr[n].task = "정보가 없는 항목 입니다.";
+                str4 += all_arr[n].task;
+            }
+            else
+            {
+                str4 += all_arr[n].task;
+            }
+            var str_task = document.getElementById("info_task");
+            str_task.innerHTML = str4;
+
+            let str5 = '';
+            if (all_arr[n].description == '-')
+            {
+                all_arr[n].description = "정보가 없는 항목 입니다.";
+                str5 += all_arr[n].description;
+            }
+            else
+            {
+                str5 += all_arr[n].description;
+            }
+            var str_description = document.getElementById("info_description");
+            str_description.innerHTML = str5;
+
+            let str6 = '';
+            str6 += '<a id="info_link" href=\'';
+            str6 += all_arr[n].link;
+            str6 += '\';" target="display_area">데이터 링크 (클릭)</a>';
+            var str_link = document.getElementById("info_link");
+            str_link.innerHTML = str6;
+
+            if (all_arr[n].tutorial == '-')
+            {
+                let str7 = '';
+                str7 += '<a id="info_tutorial"></a>';
+                var str_tutorial = document.getElementById("info_tutorial");
+                str_tutorial.innerHTML = str7;
+            }
+            else
+            {
+                let str7 = '';
+                str7 += '<a id="info_tutorial" href=\'';
+                str7 += all_arr[n].tutorial;
+                str7 += '\';" target="display_area"> / 튜토리얼 링크 (클릭)</a>';
+                var str_tutorial = document.getElementById("info_tutorial");
+                str_tutorial.innerHTML = str7;
+            }
+        }
+
+        // 여기서부터 정렬 후 관련 js 코드
+        function compare_name( a, b )
+        {
+            if ( a.name.toLowerCase() < b.name.toLowerCase()){
+                return -1;
+            }
+            if ( a.name.toLowerCase() > b.name.toLowerCase()){
+            return 1;
+            }
+            return 0;
+        }
+        function compare_category( a, b )
+        {
+            if ( a.category.toLowerCase() < b.category.toLowerCase()){
+                return -1;
+            }
+            if ( a.category.toLowerCase() > b.category.toLowerCase()){
+            return 1;
+            }
+            return 0;
+        }
+        function compare_task( a, b )
+        {
+            if ( a.task.toLowerCase() < b.task.toLowerCase()){
+                return -1;
+            }
+            if ( a.task.toLowerCase() > b.task.toLowerCase()){
+            return 1;
+            }
+            return 0;
+        }
+        function compare_tutorial( a, b )
+        {
+            if ( a.tutorial.toLowerCase() < b.tutorial.toLowerCase()){
+                return -1;
+            }
+            if ( a.tutorial.toLowerCase() > b.tutorial.toLowerCase()){
+            return 1;
+            }
+            return 0;
+        }
+
+        function sorttting() {
+            var sort_select = document.getElementById("sort_select");
+            var val = sort_select.options[sort_select.selectedIndex].value;
+
+            if (val == "sorting_name")
+            {
+                all_arr.sort(compare_name);
+                let htmlStr = '';
+                for (var m=0; m<60; m++) {
+                        htmlStr += '<li><a id = "';
+                        htmlStr += m;
+                        htmlStr += '" style="cursor:pointer; text-decoration-line: none; color: black;" href="';
+                        htmlStr += all_arr[m].link;
+                        htmlStr += '" target="display_area"';
+                        htmlStr += ' onclick = "information2(';
+                        htmlStr += m;
+                        htmlStr += ');">';
+                        htmlStr += all_arr[m].name;
+                        htmlStr += '</a></li>';
+                    }
+                var da_li = document.getElementById("da_li");
+                da_li.innerHTML = htmlStr;
+            }
+            else if (val == "sorting_category")
+            {
+                all_arr.sort(compare_category);
+                let htmlStr = '';
+                for (var m=0; m<60; m++) {
+                        htmlStr += '<li><a id = "';
+                        htmlStr += m;
+                        htmlStr += '" style="cursor:pointer; text-decoration-line: none; color: black;" href="';
+                        htmlStr += all_arr[m].link;
+                        htmlStr += '" target="display_area"';
+                        htmlStr += ' onclick = "information2(';
+                        htmlStr += m;
+                        htmlStr += ');">';
+                        htmlStr += all_arr[m].name;
+                        htmlStr += '</a></li>';
+                    }
+                var da_li = document.getElementById("da_li");
+                da_li.innerHTML = htmlStr;
+            }
+            else if (val == "sorting_task")
+            {
+                all_arr.sort(compare_task);
+                let htmlStr = '';
+                for (var m=0; m<60; m++) {
+                        htmlStr += '<li><a id = "';
+                        htmlStr += m;
+                        htmlStr += '" style="cursor:pointer; text-decoration-line: none; color: black;" href="';
+                        htmlStr += all_arr[m].link;
+                        htmlStr += '" target="display_area"';
+                        htmlStr += ' onclick = "information2(';
+                        htmlStr += m;
+                        htmlStr += ');">';
+                        htmlStr += all_arr[m].name;
+                        htmlStr += '</a></li>';
+                    }
+                var da_li = document.getElementById("da_li");
+                da_li.innerHTML = htmlStr;
+            }
+            else
+            {
+                all_arr.sort(compare_tutorial);
+                let htmlStr = '';
+                for (var m=0; m<60; m++) {
+                        htmlStr += '<li><a id = "';
+                        htmlStr += m;
+                        htmlStr += '" style="cursor:pointer; text-decoration-line: none; color: black;" href="';
+                        htmlStr += all_arr[m].link;
+                        htmlStr += '" target="display_area"';
+                        htmlStr += ' onclick = "information2(';
+                        htmlStr += m;
+                        htmlStr += ');">';
+                        htmlStr += all_arr[m].name;
+                        htmlStr += '</a></li>';
+                    }
+                var da_li = document.getElementById("da_li");
+                da_li.innerHTML = htmlStr;
+            }
+        }
+
+        function information2(n) {
+                let str1 = '';
+                if (all_arr[n].name == '-')
+                {
+                    all_arr[n].name = "정보가 없는 항목 입니다.";
+                    str1 += all_arr[n].name;
+                }
+                else
+                {
+                    str1 += all_arr[n].name;
+                }
+                var str_name = document.getElementById("info_name");
+                str_name.innerHTML = str1;
+
+                let str2 = '';
+                if (all_arr[n].field == '-')
+                {
+                    all_arr[n].field = "정보가 없는 항목 입니다.";
+                    str2 += all_arr[n].field;
+                }
+                else
+                {
+                    str2 += all_arr[n].field;
+                }
+                var str_field = document.getElementById("info_field");
+                str_field.innerHTML = str2;
+
+                let str3 = '';
+                if (all_arr[n].instances == '-')
+                {
+                    all_arr[n].instances = "정보가 없는 항목 입니다.";
+                    str3 += all_arr[n].instances;
+                }
+                else
+                {
+                    str3 += all_arr[n].instances;
+                }
+                var str_instances = document.getElementById("info_instances");
+                str_instances.innerHTML = str3;
+
+                let str4 = '';
+                if (all_arr[n].task == '-')
+                {
+                    all_arr[n].task = "정보가 없는 항목 입니다.";
+                    str4 += all_arr[n].task;
+                }
+                else
+                {
+                    str4 += all_arr[n].task;
+                }
+                var str_task = document.getElementById("info_task");
+                str_task.innerHTML = str4;
+
+                let str5 = '';
+                if (all_arr[n].description == '-')
+                {
+                    all_arr[n].description = "정보가 없는 항목 입니다.";
+                    str5 += all_arr[n].description;
+                }
+                else
+                {
+                    str5 += all_arr[n].description;
+                }
+                var str_description = document.getElementById("info_description");
+                str_description.innerHTML = str5;
+
+                let str6 = '';
+                str6 += '<a id="info_link" href=\'';
+                str6 += all_arr[n].link;
+                str6 += '\';" target="display_area">데이터 링크 (클릭)</a>';
+                var str_link = document.getElementById("info_link");
+                str_link.innerHTML = str6;
+
+                if (all_arr[n].tutorial == '-')
+                {
+                    let str7 = '';
+                    str7 += '<a id="info_tutorial"></a>';
+                    var str_tutorial = document.getElementById("info_tutorial");
+                    str_tutorial.innerHTML = str7;
+                }
+                else
+                {
+                    let str7 = '';
+                    str7 += '<a id="info_tutorial" href=\'';
+                    str7 += all_arr[n].tutorial;
+                    str7 += '\';" target="display_area">';
+                    str7 += ' / 튜토리얼 링크 (클릭)</a>';
+                    var str_tutorial = document.getElementById("info_tutorial");
+                    str_tutorial.innerHTML = str7;
+                }
+        }
+    </script>
+
+    <div id = "wrap">
+        <section>
+            <div>
+               <article id = "wiki_article_top">
+                   <br>
+                   <br>&nbsp;&nbsp;<strong>- 데이터 이름(name): </strong><span id="info_name">데이터 리스트를 선택해주세요.</span>
+                   <br>&nbsp;&nbsp;<strong>- 데이터 분류(field): </strong><span id="info_field">데이터 리스트를 선택해주세요.</span>
+                   <br>&nbsp;&nbsp;<strong>- 데이터의 수(instances): </strong><span id="info_instances">데이터 리스트를 선택해주세요.</span>
+                   <br>&nbsp;&nbsp;<strong>- 데이터의 목적(task): </strong><span id="info_task">데이터 리스트를 선택해주세요.</span>
+                   <br>&nbsp;&nbsp;<strong>- 데이터 설명(description): </strong><span id="info_description">데이터 리스트를 선택해주세요.</span>
+                </article>
+           </div>
+           <div>
+               <article id = "wiki_article_bottom">
+                   <h2 style="text-align: center; margin-top:8px; margin-bottom:4;"><span id="info_link">데이터 링크 (클릭)</span><span id="info_tutorial"> / 튜토리얼 링크 (클릭)</span></h2>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   주의: '튜토리얼 링크' 선택 기능은 링크가 존재하는 데이터만 활성화 됩니다.
+                   <iframe name="display_area" src="" width="1482px" height="521px">이 브라우저는 iframe을 지원하지 않습니다.</iframe>
+               </article>
+           </div>
+       </section>
+           <div>
+               <aside>
+                   <h4>정렬기준</h4>
+                   <form>
+                       <select id = "sort_select" name = "sort" size="1">
+                           <option value = "sorting_name">이름순(a,b,c..)</option>
+                           <option value = "sorting_category">Category순(a,b,c..)</option>
+                           <option value = "sorting_task">task순(a,b,c..)</option>
+                           <option value = "sorting_tutorial">tutorial순(무,유)</option>
+                           <input type="button" style="width19pt;height:17pt;" value="정렬" onclick="sorttting();">
+                       </select>
+                   </form>
+                   <br>
+                   <h4>데이터 리스트 (선택)</h4>
+                   <div style="overflow:auto; width:200px; height:550px;">
+                       <ul id = "da_li">
+                            {% for data in data_list %}
+                                <li><a id="{{ data.index }}" style="cursor:pointer; text-decoration-line: none; color: black;" href="{{ data.link }}" target="display_area" onclick="information({{ data.index }})">{{ data.name }}</a></li>
+                            {% endfor %}
+                       </ul>
+                   </div>
+               </aside>
+           </div>
+       </div>
+{% endblock %}

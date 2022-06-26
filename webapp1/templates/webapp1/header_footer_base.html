@@ -1,0 +1,63 @@
+{% load static %}
+<html>
+    <head>
+        <title>상명대학교 데이터 공유 사이트</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'webapp1/header_footer.css' %}"/>
+        <script src="{% static 'webapp1/header_footer.js' %}"></script>
+        <script type="text/javascript">
+            function colosseum_alert() {
+                alert("Colosseum 메뉴는 이용하실 수 없습니다.");
+            }
+        </script>
+    </head>
+<body>
+    <header >
+        <div id="Header">
+            <div id="Header_1st_line">
+                <div id="Header_smlogo_div"><a href="/webapp1/"><img src="{% static 'webapp1/상명대로고.jpg' %}" id="Header_smlogo"></a></div>
+                   <div id="Header_menu_div">
+                        <ul id="Header_menu">
+                            <a href="/webapp1/"><li>Home</li></a>
+                            <a href="/webapp1/DataWiki"><li>Data Wiki</li></a>
+                            <a href="/webapp1/ShareHub"><li>Share Hub</li></a>
+                            <a onclick = "colosseum_alert();"><li>Colosseum</li></a>
+                            <a href="/webapp1/Forum"><li>Forum</li></a>
+                         </ul>
+                   </div>
+                <div id="Header_smSwlogo_div">
+                    <div id="Header_smSwlogo"><a href="https://swai.smu.ac.kr/"><img src="{% static 'webapp1/상명사업단 로고.png' %}"></a></div></div>
+            </div>
+            <div id="Header_2st_line"></div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+<footer>
+
+    <div id="foot_back">
+        <div>
+        <ul id="footer_menu">
+            <li><a id="a_site1" href="https://www.smu.ac.kr/ko/intro/privacyPolicy.do">개인정보처리방침</a></li>
+            <li><a id="a_site2" href="https://swai.smu.ac.kr/98/03.php">이메일주소무단수집거부</a></li>
+        </ul>
+        </div>
+        <div style="float: right;position: relative;">
+
+            <input type="button" id="site_button" onclick="display();" value="관련 사이트!" >
+            <ul id="site_list">
+                <li><a id="smu_web" href="https://www.smu.ac.kr/ko/index.do">상명대학교</a></li>
+                <li><a id="swu_web" href="https://www.swuniv.kr/">소프트웨어중심대학협의회</a></li>
+            </ul>
+        </div>
+        <div id="site_inform">
+            <div><span>(03016) 서울시 종로구 홍지문 2길 20 상명대학교 SW중심대학사업단</span></div>
+            <div><span >COPYRIGHT BY SANGMYUNG UNIVERSITY. ALL RIGHTS RESERVED.</span></div>
+        </div>
+    </div>
+
+</footer>
+</body>
+
+</html>
